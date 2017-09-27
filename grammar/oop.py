@@ -70,3 +70,39 @@ class Child(Person):
 
 c = Child("child")
 c.showName()
+
+
+# property test
+class Test():
+    def __init__(self):
+        self.__num = 100
+        self.__age = 0
+
+    def setNum(self, num):
+        print("--- set num ---")  # python2.7 不显示该行
+        self.__num = num
+
+    def getNum(self):
+        print("--- get num ---")
+        return self.__num
+
+    num = property(getNum, setNum)  # 先写get，再写set  并且不能写小括号
+
+    @property  # 装饰器的属性方法, 这里相当于原来的get
+    def test(self):
+        print("--- age getter ---")
+        return self.__age
+
+    @test.setter  # 注意这里是set， 由装饰器的名称体现
+    def test(self, value):  # 而函数名称还是相同的
+        print("--- age setter ---")
+        self.__age = value
+
+
+t = Test()
+
+t.num = 200  # --- set num ---
+print(t.num)
+
+t.test = 10  # --- age setter ---
+print(t.test)
