@@ -16,18 +16,19 @@ def reName():
 folderPath = "./temp/"
 fileNameList = os.listdir(folderPath)
 changeFlag = "remove"  # add or del or new or remove
+prefix = '[author@jazen]-'
 
 if not fileNameList: # 判断文件夹是否为空
     print("This file is EMPTY! ")
 for filename in fileNameList:
     newFileName = filename
     if changeFlag == "add":
-        newFileName = '[author@jazen]-' + filename  # 给文件名加上前缀
+        newFileName = prefix + filename  # 给文件名加上前缀
         reName()
     elif changeFlag == "del":
-        num = filename.rfind("[author@jazen]-")
+        num = filename.rfind(prefix)
         if num >= 0:   # 检测前缀是否存在 prefix
-            length = len("[author@jazen]-")
+            length = len(prefix)
             newFileName = filename[num+length: ]
         else:
             print("Cann't be simplify anymore")

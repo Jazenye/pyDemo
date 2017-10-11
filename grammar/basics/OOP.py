@@ -106,3 +106,20 @@ print(t.num)
 
 t.test = 10  # --- age setter ---
 print(t.test)
+
+
+class P(object):
+    __slots__ = ("name", "age")
+
+p = P()
+p.name = "jazen"
+try:
+    p.sex = "male"
+except AttributeError as ErrorMsg:
+    print(ErrorMsg)  # 'P' object has no attribute 'sex'
+
+
+def bar(self):
+    print("hello world")
+
+foo  = type("foo", (object,), dict(fn=bar))  # obj = foo(), obj.fn()
